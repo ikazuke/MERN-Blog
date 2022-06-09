@@ -1,11 +1,19 @@
 * {
   box-sizing: border-box;
+  color: #fff;
 }
+
+input,
+textarea {
+  color: black;
+}
+
 .App {
   display: flex;
   align-items: center;
   flex-direction: column;
   background-color: #3d3d3d;
+  height: 100vh;
 }
 
 body {
@@ -29,7 +37,6 @@ body {
   flex-direction: column;
   border: 1px solid lightgray;
   font-family: Arial, Helvetica, sans-serif;
-  color: white;
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 }
 
@@ -67,7 +74,7 @@ body {
 
 .createPostPage {
   font-family: Arial, Helvetica, sans-serif;
-  width: 100vw;
+  width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -99,9 +106,8 @@ body {
   margin-top: 15px;
   height: 40px;
   border: none;
-  background-color: lightskyblue;
+  background-color: rgb(79, 162, 245);
   border-radius: 5px;
-  color: white;
 }
 
 .formContainer button:hover {
@@ -127,7 +133,6 @@ span {
 .navbar a {
   margin-left: 20px;
   text-decoration: none;
-  color: white;
 }
 
 /* INDIVIDUAL POST */
@@ -171,7 +176,6 @@ button {
 
 .addCommentContainer button {
   background-color: dodgerblue;
-  color: white;
 }
 
 .addCommentContainer input {
@@ -232,8 +236,11 @@ button {
 }
 
 .loginContainer button {
+  background-color: rgb(79, 162, 245);
+}
+
+.loginContainer button:hover {
   background-color: dodgerblue;
-  color: white;
 }
 
 .loginContainer input {

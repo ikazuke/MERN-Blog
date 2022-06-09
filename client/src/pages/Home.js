@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 
 const Home = () => {
-  const [postList, setPostList] = useState([]);
+  const [postList, setPostList] = useState(null);
   let history = useHistory();
 
   useEffect(() => {
@@ -18,7 +18,7 @@ const Home = () => {
 
   return (
     <div className="grid-container">
-      {postList.map((post, key) => {
+      {postList?.map((post, key) => {
         return (
           <div
             id={key}
