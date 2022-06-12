@@ -29,36 +29,17 @@ const CreatePost = () => {
   return (
     <div className="createPostPage">
       <h2>New post</h2>
-      <Formik
-        initialValues={initialValues}
-        onSubmit={onSubmit}
-        validationSchema={validationSchema}
-      >
+      <Formik initialValues={initialValues} onSubmit={onSubmit} validationSchema={validationSchema}>
         <Form className="formContainer">
           <label>Title: </label>
           <ErrorMessage name="title" component="span" />
-          <Field
-            autoComplete="off"
-            id="inputCreatePost"
-            name="title"
-            placeholder="Hi im a title"
-          />
+          <Field autoComplete="off" id="inputCreatePost" name="title" placeholder="Hi im a title" />
           <label>Content: </label>
           <ErrorMessage name="content" component="span" />
-          <Field
-            autoComplete="off"
-            id="inputCreatePost"
-            name="content"
-            placeholder="Lorem isump..."
-          />
+          <Field autoComplete="off" id="inputCreatePost" name="content" placeholder="Lorem isump..." />
           <label>User: </label>
           <ErrorMessage name="user" component="span" />
-          <Field
-            autoComplete="off"
-            id="inputCreatePost"
-            name="user"
-            placeholder="Jonh Doe"
-          />
+          <Field autoComplete="off" id="inputCreatePost" name="user" placeholder="Jonh Doe" />
 
           <button type="submit">Create Post</button>
         </Form>

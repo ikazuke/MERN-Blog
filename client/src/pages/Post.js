@@ -26,14 +26,26 @@ const Post = () => {
   const addComment = () => {
     newComment.length !== 0
       ? axios
-          .post("http://localhost:3001/comments", {
-            body: newComment,
-            PostId: id,
-          })
+          .post(
+            "http://localhost:3001/comments",
+            {
+              body: newComment,
+              PostId: id,
+            },
+            {
+              headers: {
+                accessToken: sessionStorage.getItem("accessToken"),
+              },
+            }
+          )
           .then((response) => {
-            const commentToAdd = { body: newComment };
-            setComments([...comments, commentToAdd]);
-            setNewComment("");
+            if (response.data.error) {
+              console.log(response.data.error);
+            } else {
+              const commentToAdd = { body: newComment };
+              setComments([...comments, commentToAdd]);
+              setNewComment("");
+            }
           })
       : alert("Comment can't be empty");
   };
@@ -41,7 +53,7 @@ const Post = () => {
     <div className="postPage">
       <div className="leftSide">
         <div className="post" id="individual">
-          <div className="title"> {postObject.title} </div>
+          <div className="title">{postObject.title}</div>
           <div className="body">{postObject.content}</div>
           <div className="footer">{postObject.username}</div>
         </div>
@@ -54,8 +66,7 @@ const Post = () => {
             value={newComment}
             onChange={(event) => {
               setNewComment(event.target.value);
-            }}
-          ></textarea>
+            }}></textarea>
           <button onClick={addComment}>Add Comment</button>
         </div>
         <div className="listOfComments">

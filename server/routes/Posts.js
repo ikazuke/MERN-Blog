@@ -17,16 +17,15 @@ router.get("/", (req, res) => {
 
 // Create a new Post
 router.post("/", (req, res) => {
-  // Validate request
   if (!req.body) {
     res.status(400).json({
       message: "Post can not be empty!",
     });
     return;
   }
-  // Get Post data from fronted
+
   const post = req.body;
-  // Save Post in the database
+
   Posts.create(post)
     .then((data) => {
       res.json(data);

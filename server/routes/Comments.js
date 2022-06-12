@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const { Comments } = require("../models");
+const { validateToken } = require("../middlewares/AuthMiddleware");
 
 // Retrieve the comments from a post
 router.get("/:postId", (req, res) => {
@@ -24,27 +25,10 @@ router.get("/:postId", (req, res) => {
 });
 
 // Create a new comment
-router.post("/", (req, res) => {
-  // Validate request
-  if (!req.body) {
-    res.status(400).json({
-      message: "Comment can not be empty!",
-    });
-    return;
-  }
-  // Get Post data from fronted
+router.post("/", validateToken, async (req, res) => {
   const comment = req.body;
-  // Save Post in the database
-  Comments.create(comment)
-    .then((data) => {
-      res.json(data);
-    })
-    .catch((err) => {
-      res.status(500).json({
-        message:
-          err.message || "Some error occurred while creating the comment.",
-      });
-    });
+  await Comments.create(comment);
+  res.json(comment);
 });
 
 module.exports = router;
