@@ -17,6 +17,7 @@ const CreatePost = () => {
   });
 
   const onSubmit = (data, { resetForm }) => {
+    console.log("In");
     axios
       .post("http://localhost:3001/posts", data)
       .then(() => {
@@ -38,8 +39,8 @@ const CreatePost = () => {
           <ErrorMessage name="content" component="span" />
           <Field autoComplete="off" id="inputCreatePost" name="content" placeholder="Lorem isump..." />
           <label>User: </label>
-          <ErrorMessage name="user" component="span" />
-          <Field autoComplete="off" id="inputCreatePost" name="user" placeholder="Jonh Doe" />
+          <ErrorMessage name="username" component="span" />
+          <Field autoComplete="off" id="inputCreatePost" name="username" placeholder="Jonh Doe" />
 
           <button type="submit">Create Post</button>
         </Form>

@@ -1,11 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
+import { AuthContext } from "../helpers/AuthContext";
 
 function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-
+  const { setAuthState } = useContext(AuthContext);
   let history = useHistory();
 
   const login = () => {
@@ -16,12 +17,14 @@ function Login() {
         if (response.data.error) {
           alert(response.data.error);
         } else {
-          sessionStorage.setItem("accessToken", response.data);
+          localStorage.setItem("accessToken", response.data);
+          setAuthState(true);
           history.push("/");
         }
       })
       .catch((err) => console.log("Something goes wrong: ", err));
   };
+
   return (
     <div className="loginContainer">
       <label>Username:</label>

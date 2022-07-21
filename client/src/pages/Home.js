@@ -20,12 +20,7 @@ const Home = () => {
     <div className="grid-container">
       {postList?.map((post, key) => {
         return (
-          <div
-            id={key}
-            key={key}
-            className="post"
-            onClick={() => history.push(`/post/${post.id}`)}
-          >
+          <div id={key} key={key} className="post" onClick={() => history.push(`/post/${post.id}`)}>
             <b className="title">{post.title}</b>
             <div className="body">{post.content}</div>
             <div className="footer">{post.username}</div>

@@ -7,6 +7,7 @@ const Post = () => {
   const [postObject, setPost] = useState({});
   const [comments, setComments] = useState([]);
   const [newComment, setNewComment] = useState("");
+
   useEffect(() => {
     axios
       .get(`http://localhost:3001/posts/${id}`)
@@ -34,7 +35,7 @@ const Post = () => {
             },
             {
               headers: {
-                accessToken: sessionStorage.getItem("accessToken"),
+                accessToken: localStorage.getItem("accessToken"),
               },
             }
           )
@@ -42,7 +43,7 @@ const Post = () => {
             if (response.data.error) {
               console.log(response.data.error);
             } else {
-              const commentToAdd = { body: newComment };
+              const commentToAdd = { body: newComment, username: response.data.username };
               setComments([...comments, commentToAdd]);
               setNewComment("");
             }
@@ -74,6 +75,9 @@ const Post = () => {
             ? comments.map((comment, key) => {
                 return (
                   <div key={key} className="comment">
+                    <div style={{ marginBottom: 5 }}>
+                      <b>{comment.username} said: </b>
+                    </div>
                     {comment.body}
                   </div>
                 );

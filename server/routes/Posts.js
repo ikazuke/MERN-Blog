@@ -17,13 +17,6 @@ router.get("/", (req, res) => {
 
 // Create a new Post
 router.post("/", (req, res) => {
-  if (!req.body) {
-    res.status(400).json({
-      message: "Post can not be empty!",
-    });
-    return;
-  }
-
   const post = req.body;
 
   Posts.create(post)
